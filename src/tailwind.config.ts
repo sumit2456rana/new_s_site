@@ -2,14 +2,13 @@ import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: [
-    "./src/app/**/*.{js,ts,jsx,tsx}",
-    "./src/components/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,ts,jsx,tsx,mdx,css}",
   ],
   theme: {
     extend: {
       fontFamily: {
-        heading: ["var(--font-fredoka)"],
-        text: ["var(--font-nunito)"],
+        heading: ["var(--font-fredoka)", "sans-serif"],
+        text: ["var(--font-nunito)", "sans-serif"],
       },
     },
   },

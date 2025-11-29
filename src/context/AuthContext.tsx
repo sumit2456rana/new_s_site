@@ -10,7 +10,19 @@ type AuthContextType = {
 const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  // ⭐ Initialize AUTH from sessionStorage (no useEffect needed)
+  const [isAuthenticated, setIsAuthenticatedState] = useState(() => {
+    if (typeof window !== "undefined") {
+      return sessionStorage.getItem("auth") === "true";
+    }
+    return false;
+  });
+
+  // ⭐ Wrapper to save to both state & sessionStorage
+  const setIsAuthenticated = (value: boolean) => {
+    setIsAuthenticatedState(value);
+    sessionStorage.setItem("auth", value ? "true" : "false");
+  };
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
