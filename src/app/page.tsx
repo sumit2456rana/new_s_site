@@ -1,15 +1,22 @@
-import { MotionDiv } from "@/components/MotionDiv";
-import { Loader, Loader2 } from "lucide-react";
+"use client";
+
+import HeartBackground from "@/components/RealisticBackground";
+import { useAuth } from "@/context/AuthContext";
+import { redirect } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Home() {
+  const { isAuthenticated } = useAuth();
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      redirect("/login");
+    }
+  }, [isAuthenticated]);
+
   return (
-    <MotionDiv
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      className="p-4"
-    >
-      <h1 className="text-2xl font-semibold">Something special is loading.... <Loader2 className="animate-spin" /></h1>
-    </MotionDiv>
+    <div className="relative min-h-screen overflow-hidden bg-black text-white">
+      <HeartBackground />
+    </div>
   );
 }

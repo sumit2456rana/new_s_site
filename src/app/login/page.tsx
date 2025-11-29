@@ -1,18 +1,14 @@
-import { MotionDiv } from '@/components/MotionDiv'
-import React from 'react'
+import HeartBackground from "@/components/RealisticBackground";
+import Login from "./components/Login";
 
-const page = () => {
+const Page = () => {
     return (
-        <MotionDiv
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className='flex justify-center items-center min-h-screen p-8'>
-            <div className='border shadow-2xl w-full max-w-xl rounded-xl h-96 flex justify-center items-center'>
-                <h1 className="font-heading text-3xl">Login 🎉</h1>
-            </div>
-        </MotionDiv>
-    )
-}
+        <div className="relative min-h-screen grid place-items-center px-6 bg-black overflow-hidden">
 
-export default page
+            <HeartBackground />
+            <Login />
+        </div>
+    );
+};
+
+export default Page;
